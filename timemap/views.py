@@ -54,7 +54,7 @@ def ajax_autocomplete_events(request, pk):
 @require_POST
 def ajax_create_an_event_mapping(request, pk):
     timeline = get_object_or_404(Timeline, pk=pk)
-    form = TimelineMappingForm(request.POST, timeine=timeline)
+    form = TimelineMappingForm(request.POST, timeline=timeline)
     data = {}
     if form.is_valid():
         mapping = form.create_mapping(who=request.user)
