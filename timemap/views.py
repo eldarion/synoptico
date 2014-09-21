@@ -1,12 +1,10 @@
 from django.http import Http404
 from django.views.generic import DetailView
 
-from account.mixins import LoginRequiredMixin
-
 from .models import Timeline
 
 
-class TimelineDetailView(LoginRequiredMixin, DetailView):
+class TimelineDetailView(DetailView):
     model = Timeline
 
     def get_object(self, queryset=None):
