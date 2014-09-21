@@ -57,7 +57,7 @@ def ajax_create_an_event_mapping(request, pk):
     form = TimelineMappingForm(request.POST, timeine=timeline)
     data = {}
     if form.is_valid():
-        mapping = form.create_mapping()
+        mapping = form.create_mapping(who=request.user)
         form = TimelineMappingForm(timeline=timeline)
         data = {
             "html": render_to_string("timemap/_mapping.html", RequestContext(request, {

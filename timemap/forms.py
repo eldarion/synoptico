@@ -18,16 +18,18 @@ class TimelineMappingForm(forms.Form):
         TimelineMapping.validate_offset(self.timeline, offset)
         return offset
 
-    def create_mapping(self):
+    def create_mapping(self, who):
         if self.cleaned_data["event_pk"] is not None:
             event = Event.objects.get(pk=self.cleaned_data["event_pk"])
         else:
             event = Event.objects.create(
                 project=self.timeline.project,
-                description=self.cleaned_data["event_description"]
+                description=self.cleaned_data["event_description"],
+                created_by=who
             )
         mapping = self.timeline.mappings.create(
             event=event,
-            offset=self.cleaned_data["offset"]
+            offset=self.cleaned_data["offset"],
+            created_by=who
         )
         return mapping
