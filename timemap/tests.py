@@ -32,6 +32,26 @@ class ValidationTests(TestCase):
                 created_by=self.user
             )
 
+    def test_isbn_validation_valid_with_10_digits(self):
+        timeline = Timeline.objects.create(
+            project=self.project,
+            media_type=Timeline.MEDIA_TYPE_BOOK,
+            name="Paperback Edition",
+            identifier="1321333423",
+            created_by=self.user
+        )
+        self.assertEquals(timeline.pk, 1)
+
+    def test_isbn_validation_valid_with_13_digits(self):
+        timeline = Timeline.objects.create(
+            project=self.project,
+            media_type=Timeline.MEDIA_TYPE_BOOK,
+            name="Paperback Edition",
+            identifier="1321331231323",
+            created_by=self.user
+        )
+        self.assertEquals(timeline.pk, 1)
+
     def test_isbn_validation_works(self):
         timeline = Timeline.objects.create(
             project=self.project,

@@ -22,8 +22,8 @@ validate_imdb_url = IMDBUrlValidator()
 
 
 def validate_isbn(value):
-    if len(value) != 13:
-        raise ValidationError("ISBN should be 13 digits.", code="invalid")
+    if len(value) not in [10, 13]:
+        raise ValidationError("ISBN should be 10 or 13 digits.", code="invalid")
     validate_integer(value)
 
 
