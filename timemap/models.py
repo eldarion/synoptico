@@ -1,4 +1,3 @@
-from django.core import validators
 from django.db import models
 from django.utils import timezone
 
@@ -6,8 +5,12 @@ from django.contrib.auth.models import User
 
 from slugify import slugify
 
-from .fields import ISBNField
-from .validators import validate_timecode
+from .validators import (
+    validate_imdb_url,
+    validate_isbn,
+    validate_timecode,
+    validate_page_number
+)
 
 
 class CreatedByModel(models.Model):
@@ -40,13 +43,19 @@ class Timeline(CreatedByModel):
     ]
 
     story = models.ForeignKey(Story, related_name="timelines")
-    isbn = ISBNField(blank=True)
-    imdb = models.CharField(max_length=100, blank=True)
+    identifier = models.CharField(max_length=200, unique=True)
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES)
     name = models.CharField(max_length=100)
 
+    def clean(self):
+        if self.media_type == Timeline.MEDIA_TYPE_BOOK:
+            validate_isbn(self.identifier)
+        elif self.media_type == Timeline.MEDIA_TYPE_MOVIE:
+            validate_imdb_url(self.identifier)
+        super(Timeline, self).clean()
+
     def save(self, *args, **kwargs):
-        self.full_clean()  # have to do this to get validators to run on ISBNField. Is there a way to avoid this?
+        self.full_clean()
         return super(Timeline, self).save(*args, **kwargs)
 
 
@@ -63,7 +72,7 @@ class TimelineMapping(CreatedByModel):
 
     def clean(self):
         if self.timeline.media_type == Timeline.MEDIA_TYPE_BOOK:
-            validators.validate_integer(self.offset)
+            validate_page_number(self.offset)
         elif self.timeline.media_type == Timeline.MEDIA_TYPE_MOVIE:
             validate_timecode(self.offset)
         super(TimelineMapping, self).clean()

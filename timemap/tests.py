@@ -18,7 +18,17 @@ class ValidationTests(TestCase):
                 story=self.story,
                 media_type=Timeline.MEDIA_TYPE_BOOK,
                 name="Paperback Edition",
-                isbn="notanisbn",
+                identifier="notanisbn",
+                created_by=self.user
+            )
+
+    def test_isbn_validation_error_from_no_right_number_of_digits(self):
+        with self.assertRaises(ValidationError):
+            Timeline.objects.create(
+                story=self.story,
+                media_type=Timeline.MEDIA_TYPE_BOOK,
+                name="Paperback Edition",
+                identifier="132",
                 created_by=self.user
             )
 
@@ -27,7 +37,7 @@ class ValidationTests(TestCase):
             story=self.story,
             media_type=Timeline.MEDIA_TYPE_BOOK,
             name="Paperback Edition",
-            isbn="9781561641161",
+            identifier="9781561641161",
             created_by=self.user
         )
         self.assertEquals(timeline.pk, 1)
@@ -37,7 +47,7 @@ class ValidationTests(TestCase):
             story=self.story,
             media_type=Timeline.MEDIA_TYPE_BOOK,
             name="Paperback Edition",
-            isbn="9781561641161",
+            identifier="9781561641161",
             created_by=self.user
         )
         event = Event.objects.create(
@@ -57,7 +67,7 @@ class ValidationTests(TestCase):
             story=self.story,
             media_type=Timeline.MEDIA_TYPE_BOOK,
             name="Paperback Edition",
-            isbn="9781561641161",
+            identifier="9781561641161",
             created_by=self.user
         )
         event = Event.objects.create(
@@ -77,7 +87,7 @@ class ValidationTests(TestCase):
             story=self.story,
             media_type=Timeline.MEDIA_TYPE_MOVIE,
             name="DVD",
-            imdb="http://www.imdb.com/title/tt0210945/",
+            identifier="http://www.imdb.com/title/tt0210945/",
             created_by=self.user
         )
         event = Event.objects.create(
@@ -97,7 +107,7 @@ class ValidationTests(TestCase):
             story=self.story,
             media_type=Timeline.MEDIA_TYPE_MOVIE,
             name="DVD",
-            imdb="http://www.imdb.com/title/tt0210945/",
+            identifier="http://www.imdb.com/title/tt0210945/",
             created_by=self.user
         )
         event = Event.objects.create(
