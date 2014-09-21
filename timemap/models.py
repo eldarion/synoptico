@@ -38,10 +38,12 @@ class Project(CreatedByModel):
 
 class Timeline(CreatedByModel):
 
+    MEDIA_TYPE_KINDLE = "kindle"
     MEDIA_TYPE_BOOK = "book"
     MEDIA_TYPE_MOVIE = "movie"
     MEDIA_TYPE_CHOICES = [
         (MEDIA_TYPE_BOOK, "Book"),
+        (MEDIA_TYPE_KINDLE, "Kindle Book"),
         (MEDIA_TYPE_MOVIE, "Movie")
     ]
 
