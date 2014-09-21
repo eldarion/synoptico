@@ -46,9 +46,12 @@ class Timeline(CreatedByModel):
     ]
 
     project = models.ForeignKey(Project, related_name="timelines")
-    identifier = models.CharField(max_length=200, unique=True)
+    identifier = models.CharField(max_length=200)
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES)
     name = models.CharField(max_length=100)
+
+    class Meta:
+        unique_together = [("identifier", "media_type")]
 
     def __unicode__(self):
         return u"{}: {}".format(self.identifier, self.name)
