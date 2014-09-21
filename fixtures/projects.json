@@ -1,0 +1,13 @@
+[
+{
+    "fields": {
+        "created_at": "2014-09-21T19:58:38Z",
+        "description": "Mapping various editions of the book to the films.",
+        "slug": "the-hobbit",
+        "created_by": 1,
+        "title": "The Hobbit"
+    },
+    "model": "timemap.project",
+    "pk": 1
+}
+]
