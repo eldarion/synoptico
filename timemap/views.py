@@ -1,4 +1,7 @@
-from django.http import Http404
+import json
+
+from django.http import Http404, HttpResponse
+from django.shortcuts import get_object_or_404
 from django.views.generic import DetailView
 
 from .models import Project, Timeline
@@ -22,3 +25,13 @@ class TimelineDetailView(DetailView):
         except queryset.model.DoesNotExist:
             raise Http404("No timeline found matching the query")
         return obj
+
+
+def ajax_autocomplete_events(request, pk):
+    project = get_object_or_404(Project, pk=pk)
+    events = project.events.all()
+    data = [
+        {"pk": event.pk, "description": event.description}
+        for event in events
+    ]  # NOTE: It will likely be useful to return details of where this event is already logged
+    return HttpResponse(json.dumps(data), content_type="application/json")
