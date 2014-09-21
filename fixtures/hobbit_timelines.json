@@ -1,0 +1,14 @@
+[
+{
+    "fields": {
+        "name": "The Hobbit (Houghton Mifflin Seventieth Anniversary Edition)",
+        "created_at": "2014-09-21T20:42:50Z",
+        "created_by": 1,
+        "project": 1,
+        "media_type": "book",
+        "identifier": "9780618968633"
+    },
+    "model": "timemap.timeline",
+    "pk": 1
+}
+]
