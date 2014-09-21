@@ -6,10 +6,15 @@
 
     <h2>Timelines</h2>
 
+    <div class="list-group">
     {% for timeline in project.timelines.all %}
-        <div>
-            <a href="{% url 'timeline_detail' project.slug timeline.pk %}">{{ timeline.name }}</a><br>
-            {{ timeline.get_media_type_display }} {{ timeline.identifier }}
+        <div class="list-group-item">
+            <h4 class="list-group-item-heading">
+                {% if timeline.media_type == "book" %}<i class="fa fa-book"></i>{% endif %}
+                <a href="{% url 'timeline_detail' project.slug timeline.pk %}">{{ timeline.name }}</a>
+                <small>{{ timeline.identifier }}</small>
+            </h4>
         </div>
     {% endfor %}
+    </div>
 {% endblock %}
