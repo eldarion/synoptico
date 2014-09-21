@@ -51,6 +51,7 @@ class ValidationTests(TestCase):
             created_by=self.user
         )
         event = Event.objects.create(
+            project=self.project,
             description="Tobias MacIvey dies",
             created_by=self.user
         )
@@ -71,6 +72,7 @@ class ValidationTests(TestCase):
             created_by=self.user
         )
         event = Event.objects.create(
+            project=self.project,
             description="Tobias MacIvey dies",
             created_by=self.user
         )
@@ -91,6 +93,7 @@ class ValidationTests(TestCase):
             created_by=self.user
         )
         event = Event.objects.create(
+            project=self.project,
             description="Tobias MacIvey dies",
             created_by=self.user
         )
@@ -111,6 +114,7 @@ class ValidationTests(TestCase):
             created_by=self.user
         )
         event = Event.objects.create(
+            project=self.project,
             description="Tobias MacIvey dies",
             created_by=self.user
         )

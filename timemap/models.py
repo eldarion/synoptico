@@ -67,6 +67,7 @@ class Timeline(CreatedByModel):
 
 class Event(CreatedByModel):
 
+    project = models.ForeignKey(Project, related_name="events")
     description = models.TextField()
 
     def __unicode__(self):
