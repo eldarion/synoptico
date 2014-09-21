@@ -47,6 +47,11 @@ class Timeline(CreatedByModel):
         (MEDIA_TYPE_KINDLE, "Kindle Book"),
         (MEDIA_TYPE_MOVIE, "Movie")
     ]
+    MEDIA_TYPE_OFFSET_DISPLAYS = {
+        MEDIA_TYPE_KINDLE: "Location {}",
+        MEDIA_TYPE_BOOK: "Page {}",
+        MEDIA_TYPE_MOVIE: "{}"
+    }
 
     project = models.ForeignKey(Project, related_name="timelines")
     identifier = models.CharField(max_length=200)
@@ -92,6 +97,9 @@ class TimelineMapping(CreatedByModel):
             self.event.pk,
             self.offset
         )
+
+    def offset_display(self):
+        return Timeline.MEDIA_TYPE_OFFSET_DISPLAYS[self.timeline.media_type].format(self.offset)
 
     @classmethod
     def validate_offset(cls, timeline, offset):
