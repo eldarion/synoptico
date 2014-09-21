@@ -26,6 +26,7 @@ class Project(CreatedByModel):
 
     title = models.CharField(max_length=100)
     slug = models.CharField(max_length=50, unique=True)
+    description = models.TextField()
 
     def __unicode__(self):
         return self.title
