@@ -46,7 +46,7 @@ class Timeline(CreatedByModel):
     name = models.CharField(max_length=100)
 
     def save(self, *args, **kwargs):
-        self.full_clean()  # have to do this to get validators to run on ISBNField, ugh.
+        self.full_clean()  # have to do this to get validators to run on ISBNField. Is there a way to avoid this?
         return super(Timeline, self).save(*args, **kwargs)
 
 
