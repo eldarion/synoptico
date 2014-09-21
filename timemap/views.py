@@ -66,7 +66,10 @@ def ajax_create_an_event_mapping(request, pk):
         }
     data["fragments"] = {
         ".mapping-form": render_to_string(
-            "timemap/_mapping_form.html", RequestContext(request, {"form": form})
+            "timemap/_mapping_form.html", RequestContext(request, {
+                "form": form,
+                "timeline": timeline
+            })
         ),
     }
     return HttpResponse(json.dumps(data), content_type="application/json")
