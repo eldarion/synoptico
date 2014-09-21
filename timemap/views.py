@@ -2,8 +2,14 @@ import json
 
 from django.http import Http404, HttpResponse
 from django.shortcuts import get_object_or_404
+from django.template import RequestContext
+from django.template.loader import render_to_string
+from django.views.decorators.http import require_POST
 from django.views.generic import DetailView
 
+from account.decorators import login_required
+
+from .forms import TimelineMappingForm
 from .models import Project, Timeline
 
 
@@ -34,4 +40,26 @@ def ajax_autocomplete_events(request, pk):
         {"pk": event.pk, "description": event.description}
         for event in events
     ]  # NOTE: It will likely be useful to return details of where this event is already logged
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+@login_required
+@require_POST
+def ajax_create_an_event_mapping(request, pk):
+    timeline = get_object_or_404(Timeline, pk=pk)
+    form = TimelineMappingForm(request.POST, timeine=timeline)
+    data = {}
+    if form.is_valid():
+        mapping = form.create_mapping()
+        form = TimelineMappingForm(timeline=timeline)
+        data = {
+            "html": render_to_string("timemap/_mapping.html", RequestContext(request, {
+                "mapping": mapping}
+            ))
+        }
+    data["fragments"] = {
+        ".mapping-form": render_to_string(
+            "timemap/_mapping_form.html", RequestContext(request, {"form": form})
+        ),
+    }
     return HttpResponse(json.dumps(data), content_type="application/json")

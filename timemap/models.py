@@ -82,8 +82,8 @@ class Event(CreatedByModel):
 
 class TimelineMapping(CreatedByModel):
 
-    timeline = models.ForeignKey(Timeline)
-    event = models.ForeignKey(Event)
+    timeline = models.ForeignKey(Timeline, related_name="mappings")
+    event = models.ForeignKey(Event, related_name="mappings")
     offset = models.CharField(max_length=50)
 
     def __unicode__(self):
@@ -93,11 +93,15 @@ class TimelineMapping(CreatedByModel):
             self.offset
         )
 
+    @classmethod
+    def validate_offset(cls, timeline, offset):
+        if timeline.media_type == Timeline.MEDIA_TYPE_BOOK:
+            validate_page_number(offset)
+        elif timeline.media_type == Timeline.MEDIA_TYPE_MOVIE:
+            validate_timecode(offset)
+
     def clean(self):
-        if self.timeline.media_type == Timeline.MEDIA_TYPE_BOOK:
-            validate_page_number(self.offset)
-        elif self.timeline.media_type == Timeline.MEDIA_TYPE_MOVIE:
-            validate_timecode(self.offset)
+        TimelineMapping.validate_offset(self.timeline, self.offset)
         super(TimelineMapping, self).clean()
 
     def save(self, *args, **kwargs):
