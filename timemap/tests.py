@@ -3,19 +3,19 @@ from django.test import TestCase
 
 from django.contrib.auth.models import User
 
-from .models import Story, Timeline, Event, TimelineMapping
+from .models import Project, Timeline, Event, TimelineMapping
 
 
 class ValidationTests(TestCase):
 
     def setUp(self):
         self.user = User.objects.create_user(username="paltman")
-        self.story = Story.objects.create(title="A Land Remembered", created_by=self.user)
+        self.project = Project.objects.create(title="A Land Remembered", created_by=self.user)
 
     def test_isbn_validation_error(self):
         with self.assertRaises(ValidationError):
             Timeline.objects.create(
-                story=self.story,
+                project=self.project,
                 media_type=Timeline.MEDIA_TYPE_BOOK,
                 name="Paperback Edition",
                 identifier="notanisbn",
@@ -25,7 +25,7 @@ class ValidationTests(TestCase):
     def test_isbn_validation_error_from_no_right_number_of_digits(self):
         with self.assertRaises(ValidationError):
             Timeline.objects.create(
-                story=self.story,
+                project=self.project,
                 media_type=Timeline.MEDIA_TYPE_BOOK,
                 name="Paperback Edition",
                 identifier="132",
@@ -34,7 +34,7 @@ class ValidationTests(TestCase):
 
     def test_isbn_validation_works(self):
         timeline = Timeline.objects.create(
-            story=self.story,
+            project=self.project,
             media_type=Timeline.MEDIA_TYPE_BOOK,
             name="Paperback Edition",
             identifier="9781561641161",
@@ -44,7 +44,7 @@ class ValidationTests(TestCase):
 
     def test_page_number_validation_error(self):
         timeline = Timeline.objects.create(
-            story=self.story,
+            project=self.project,
             media_type=Timeline.MEDIA_TYPE_BOOK,
             name="Paperback Edition",
             identifier="9781561641161",
@@ -64,7 +64,7 @@ class ValidationTests(TestCase):
 
     def test_page_number_validation_works(self):
         timeline = Timeline.objects.create(
-            story=self.story,
+            project=self.project,
             media_type=Timeline.MEDIA_TYPE_BOOK,
             name="Paperback Edition",
             identifier="9781561641161",
@@ -84,7 +84,7 @@ class ValidationTests(TestCase):
 
     def test_timecode_validation_error(self):
         timeline = Timeline.objects.create(
-            story=self.story,
+            project=self.project,
             media_type=Timeline.MEDIA_TYPE_MOVIE,
             name="DVD",
             identifier="http://www.imdb.com/title/tt0210945/",
@@ -104,7 +104,7 @@ class ValidationTests(TestCase):
 
     def test_timecode_validation_works(self):
         timeline = Timeline.objects.create(
-            story=self.story,
+            project=self.project,
             media_type=Timeline.MEDIA_TYPE_MOVIE,
             name="DVD",
             identifier="http://www.imdb.com/title/tt0210945/",

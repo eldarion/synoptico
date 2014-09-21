@@ -22,7 +22,7 @@ class CreatedByModel(models.Model):
         abstract = True
 
 
-class Story(CreatedByModel):
+class Project(CreatedByModel):
 
     title = models.CharField(max_length=100)
     slug = models.CharField(max_length=50, unique=True)
@@ -30,7 +30,7 @@ class Story(CreatedByModel):
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.title)[:50]
-        super(Story, self).save(*args, **kwargs)
+        super(Project, self).save(*args, **kwargs)
 
 
 class Timeline(CreatedByModel):
@@ -42,7 +42,7 @@ class Timeline(CreatedByModel):
         (MEDIA_TYPE_MOVIE, "Movie")
     ]
 
-    story = models.ForeignKey(Story, related_name="timelines")
+    project = models.ForeignKey(Project, related_name="timelines")
     identifier = models.CharField(max_length=200, unique=True)
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES)
     name = models.CharField(max_length=100)
