@@ -32,6 +32,13 @@ class TimelineDetailView(DetailView):
             raise Http404("No timeline found matching the query")
         return obj
 
+    def get_context_data(self, **kwargs):
+        context = super(TimelineDetailView, self).get_context_data(**kwargs)
+        context.update({
+            "form": TimelineMappingForm(timeline=self.get_object())
+        })
+        return context
+
 
 def ajax_autocomplete_events(request, pk):
     project = get_object_or_404(Project, pk=pk)
