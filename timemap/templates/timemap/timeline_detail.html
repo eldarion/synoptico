@@ -1,1 +1,13 @@
 {% extends "timemap/base.html" %}
+
+{% block body %}
+    <h1>{{ timeline }}</h1>
+
+    {% include "timemap/_mapping_form.html" %}
+
+    <div class="mappings">
+    {% for mapping in timeline.mappings.all %}
+        {% include "timemap/_mapping.html" %}
+    {% endfor %}
+    </div>
+{% endblock %}
