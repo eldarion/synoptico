@@ -1,1 +1,15 @@
 {% extends "timemap/base.html" %}
+
+{% block body %}
+    <h1>{{ project.title }}</h1>
+    <p class="lead">{{ project.description }}</p>
+
+    <h2>Timelines</h2>
+
+    {% for timeline in project.timelines.all %}
+        <div>
+            <a href="{% url 'timeline_detail' project.slug timeline.pk %}">{{ timeline.name }}</a><br>
+            {{ timeline.get_media_type_display }} {{ timeline.identifier }}
+        </div>
+    {% endfor %}
+{% endblock %}
