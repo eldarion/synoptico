@@ -45,6 +45,10 @@ class Timeline(CreatedByModel):
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES)
     name = models.CharField(max_length=100)
 
+    def save(self, *args, **kwargs):
+        self.full_clean()  # have to do this to get validators to run on ISBNField, ugh.
+        return super(Timeline, self).save(*args, **kwargs)
+
 
 class Event(CreatedByModel):
 
