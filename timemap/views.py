@@ -1,7 +1,11 @@
 from django.http import Http404
 from django.views.generic import DetailView
 
-from .models import Timeline
+from .models import Project, Timeline
+
+
+class ProjectDetailView(DetailView):
+    model = Project
 
 
 class TimelineDetailView(DetailView):
