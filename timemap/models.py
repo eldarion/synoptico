@@ -27,6 +27,9 @@ class Project(CreatedByModel):
     title = models.CharField(max_length=100)
     slug = models.CharField(max_length=50, unique=True)
 
+    def __unicode__(self):
+        return self.title
+
     def save(self, *args, **kwargs):
         if not self.id:
             self.slug = slugify(self.title)[:50]
@@ -47,6 +50,9 @@ class Timeline(CreatedByModel):
     media_type = models.CharField(max_length=10, choices=MEDIA_TYPE_CHOICES)
     name = models.CharField(max_length=100)
 
+    def __unicode__(self):
+        return u"{}: {}".format(self.identifier, self.name)
+
     def clean(self):
         if self.media_type == Timeline.MEDIA_TYPE_BOOK:
             validate_isbn(self.identifier)
@@ -63,12 +69,22 @@ class Event(CreatedByModel):
 
     description = models.TextField()
 
+    def __unicode__(self):
+        return u"<Event {} by {}>".format(self.pk, self.created_by.username)
+
 
 class TimelineMapping(CreatedByModel):
 
     timeline = models.ForeignKey(Timeline)
     event = models.ForeignKey(Event)
     offset = models.CharField(max_length=50)
+
+    def __unicode__(self):
+        return u"<TimelineMapping timeline={}, event={}, offset={}>".format(
+            unicode(self.timeline),
+            self.event.pk,
+            self.offset
+        )
 
     def clean(self):
         if self.timeline.media_type == Timeline.MEDIA_TYPE_BOOK:
