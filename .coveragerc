@@ -1,0 +1,4 @@
+[run]
+source = timemap
+omit = timemap/wsgi.py,timemap/settings_gondor.py
+branch = true
