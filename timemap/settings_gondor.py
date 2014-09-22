@@ -26,6 +26,8 @@ if "GONDOR_DATABASE_URL" in os.environ:
         }
     }
 
+SITE_ID = 2
+
 MEDIA_ROOT = os.path.join(os.environ["GONDOR_DATA_DIR"], "site_media", "media")
 STATIC_ROOT = os.path.join(os.environ["GONDOR_DATA_DIR"], "site_media", "static")
 

@@ -167,6 +167,15 @@ LOGGING = {
     }
 }
 
+METRON_SETTINGS = {
+    "google": {
+        2: "",
+    },
+    "gauges": {
+        2: "542064a0e32bb4496f0034f3",
+    }
+}
+
 FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
 ]
