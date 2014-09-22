@@ -1,0 +1,19 @@
+{% extends "timemap/base.html" %}
+
+{% load bootstrap %}
+
+{% block body %}
+    <form class="form mapping-form" data-append=".mappings" method="post" action="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">
+        {% csrf_token %}
+        {{ form|bootstrap }}
+        <button class="btn btn-primary" name="save" value="add">Save</button>
+        <button class="btn btn-default" name="save" value="add-another">Save &amp; Add Another</button>
+    </form>
+{% endblock %}
+
+{% block extra_body %}
+    {{ block.body }}
+    <script charset="utf-8">
+        $(".mapping-form").eventSelector();
+    </script>
+{% endblock %}

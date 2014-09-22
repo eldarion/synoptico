@@ -1,16 +1,14 @@
 import json
 
-from django.http import Http404, HttpResponse
+from django.core.urlresolvers import reverse
+from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.template import RequestContext
-from django.template.loader import render_to_string
-from django.views.decorators.http import require_POST
-from django.views.generic import DetailView
+from django.views.generic import DetailView, CreateView
 
-from account.decorators import login_required
+from account.mixins import LoginRequiredMixin
 
 from .forms import TimelineMappingForm
-from .models import Project, Timeline
+from .models import Project, Timeline, TimelineMapping
 
 
 class ProjectDetailView(DetailView):
@@ -40,6 +38,42 @@ class TimelineDetailView(DetailView):
         return context
 
 
+class TimelineMappingCreateView(LoginRequiredMixin, CreateView):
+    form_class = TimelineMappingForm
+    model = TimelineMapping
+
+    def dispatch(self, request, *args, **kwargs):
+        self.timeline = get_object_or_404(Timeline, pk=kwargs["pk"])
+        return super(TimelineMappingCreateView, self).dispatch(request, *args, **kwargs)
+
+    def get_form_kwargs(self):
+        kwargs = super(TimelineMappingCreateView, self).get_form_kwargs()
+        kwargs.update({
+            "timeline": self.timeline
+        })
+        return kwargs
+
+    def get_context_data(self, **kwargs):
+        context = super(TimelineMappingCreateView, self).get_context_data(**kwargs)
+        context.update({"timeline": self.timeline})
+        return context
+
+    def form_valid(self, form):
+        form.save(who=self.request.user)
+        print form.cleaned_data
+        if self.request.POST.get("save") == "add-another":
+            url = reverse(
+                "timeline_events_mapping_create",
+                args=[self.timeline.project.slug, self.timeline.pk]
+            )
+        else:
+            url = reverse(
+                "timeline_detail",
+                args=[self.timeline.project.slug, self.timeline.pk]
+            )
+        return HttpResponseRedirect(url)
+
+
 def ajax_autocomplete_events(request, pk):
     project = get_object_or_404(Project, pk=pk)
     events = project.events.all()  # filter(description__icontains=request.GET.get("q"))
@@ -47,29 +81,4 @@ def ajax_autocomplete_events(request, pk):
         {"pk": event.pk, "description": event.description}
         for event in events
     ]  # NOTE: It will likely be useful to return details of where this event is already logged
-    return HttpResponse(json.dumps(data), content_type="application/json")
-
-
-@login_required
-@require_POST
-def ajax_create_an_event_mapping(request, pk):
-    timeline = get_object_or_404(Timeline, pk=pk)
-    form = TimelineMappingForm(request.POST, timeline=timeline)
-    data = {}
-    if form.is_valid():
-        mapping = form.create_mapping(who=request.user)
-        form = TimelineMappingForm(timeline=timeline)
-        data = {
-            "html": render_to_string("timemap/_mapping.html", RequestContext(request, {
-                "mapping": mapping}
-            ))
-        }
-    data["fragments"] = {
-        ".mapping-form": render_to_string(
-            "timemap/_mapping_form.html", RequestContext(request, {
-                "form": form,
-                "timeline": timeline
-            })
-        ),
-    }
     return HttpResponse(json.dumps(data), content_type="application/json")

@@ -6,10 +6,10 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 
 from .views import (
-    ajax_create_an_event_mapping,
     ajax_autocomplete_events,
     ProjectDetailView,
-    TimelineDetailView
+    TimelineDetailView,
+    TimelineMappingCreateView
 )
 
 
@@ -30,14 +30,14 @@ urlpatterns = patterns(
         name="timeline_detail"
     ),
     url(
+        r"projects/(?P<slug>[\w-]+)/timelines/(?P<pk>\d+)/events/$",
+        TimelineMappingCreateView.as_view(),
+        name="timeline_events_mapping_create"
+    ),
+    url(
         r"^ajax/project-events/(?P<pk>\d+)/$",
         ajax_autocomplete_events,
         name="ajax_autocomplete_events"
-    ),
-    url(
-        r"ajax/timelines/(?P<pk>\d+)/events/$",
-        ajax_create_an_event_mapping,
-        name="ajax_create_an_event_mapping"
     )
 )
 

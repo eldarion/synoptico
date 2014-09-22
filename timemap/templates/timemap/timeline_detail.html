@@ -7,24 +7,11 @@
         <small>{{ timeline.identifier }}</small>
     </h1>
 
-    {% include "timemap/_mapping_form.html" %}
+    <a class="btn btn-primary" href="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">Add a Mapping</a>
 
     <div class="mappings">
     {% for mapping in timeline.mappings.all %}
         {% include "timemap/_mapping.html" %}
     {% endfor %}
     </div>
-{% endblock %}
-
-
-{% block extra_body %}
-    {{ block.body }}
-    <script charset="utf-8">
-        $(".mapping-form").eventSelector();
-        // $(document).on("eldarion-ajax:success", function(evt, $el, data) {
-        //     if ($el.hasClass("mapping-form")) {
-        //         $(".mapping-form").eventSelector();
-        //     }
-        // });
-    </script>
 {% endblock %}
