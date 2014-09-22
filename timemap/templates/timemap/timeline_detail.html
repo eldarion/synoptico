@@ -21,7 +21,16 @@
     </p>
 
     <p>
-        <a class="btn btn-primary" href="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">Add a Mapping</a>
+        <a class="btn btn-primary btn-lg" href="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">
+            <i class="fa fa-plus"></i>
+            Add a Mapping
+        </a>
+    </p>
+
+    <h2>Existing Events on This Timeline</h2>
+
+    <p class="lead">
+        Soon you'll have the ability to verify or flag these existing mappings.
     </p>
 
     <div class="mappings">
