@@ -3,12 +3,16 @@ import json
 from django.core.urlresolvers import reverse
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
-from django.views.generic import DetailView, CreateView
+from django.views.generic import TemplateView, DetailView, CreateView
 
 from account.mixins import LoginRequiredMixin
 
 from .forms import TimelineMappingForm
 from .models import Project, Timeline, TimelineMapping
+
+
+class HomePageView(TemplateView):
+    template_name = "homepage.html"
 
 
 class ProjectDetailView(DetailView):

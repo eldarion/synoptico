@@ -1,12 +1,12 @@
 from django.conf import settings
 from django.conf.urls import patterns, include, url
 from django.conf.urls.static import static
-from django.views.generic import TemplateView
 
 from django.contrib import admin
 
 from .views import (
     ajax_autocomplete_events,
+    HomePageView,
     ProjectDetailView,
     TimelineDetailView,
     TimelineMappingCreateView
@@ -15,7 +15,7 @@ from .views import (
 
 urlpatterns = patterns(
     "",
-    url(r"^$", TemplateView.as_view(template_name="homepage.html"), name="home"),
+    url(r"^$", HomePageView.as_view(), name="home"),
     url(r"^admin/", include(admin.site.urls)),
     url(r"^account/", include("account.urls")),
 
