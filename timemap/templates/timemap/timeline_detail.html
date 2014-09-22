@@ -35,7 +35,7 @@
     </p>
 
     <div class="mappings">
-    {% for mapping in timeline.mappings.all %}
+    {% for mapping in timeline.events %}
         {% include "timemap/_mapping.html" %}
     {% endfor %}
     </div>
