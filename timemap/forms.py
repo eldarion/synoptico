@@ -26,6 +26,7 @@ class TimelineMappingForm(forms.ModelForm):
             args=[self.timeline.project.pk]
         )
         self.instance.timeline = self.timeline
+        self.fields["offset"].label = self.timeline.offset_label()
 
     def clean_offset(self):
         offset = self.cleaned_data["offset"]

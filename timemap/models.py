@@ -47,6 +47,11 @@ class Timeline(CreatedByModel):
         (MEDIA_TYPE_KINDLE, "Kindle Book"),
         (MEDIA_TYPE_MOVIE, "Movie")
     ]
+    MEDIA_TYPE_OFFSET_LABELS = {
+        MEDIA_TYPE_KINDLE: "Location",
+        MEDIA_TYPE_BOOK: "Page",
+        MEDIA_TYPE_MOVIE: "Timecode (00:00:00)"
+    }
     MEDIA_TYPE_OFFSET_DISPLAYS = {
         MEDIA_TYPE_KINDLE: "Location {}",
         MEDIA_TYPE_BOOK: "Page {}",
@@ -65,6 +70,9 @@ class Timeline(CreatedByModel):
 
     class Meta:
         unique_together = [("identifier", "media_type")]
+
+    def offset_label(self):
+        return Timeline.MEDIA_TYPE_OFFSET_LABELS[self.media_type]
 
     def __unicode__(self):
         return u"{}: {}".format(self.identifier, self.name)
