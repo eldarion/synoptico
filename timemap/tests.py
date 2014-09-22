@@ -135,3 +135,24 @@ class ValidationTests(TestCase):
             created_by=self.user
         )
         self.assertEquals(mapping.pk, 1)
+
+    def test_timecode_validation_works_no_frames(self):
+        timeline = Timeline.objects.create(
+            project=self.project,
+            media_type=Timeline.MEDIA_TYPE_MOVIE,
+            name="The Hobbit: An Unexpected Journey",
+            identifier="http://www.imdb.com/title/tt0903624/",
+            created_by=self.user
+        )
+        event = Event.objects.create(
+            project=self.project,
+            description="Thorin inserts the key",
+            created_by=self.user
+        )
+        mapping = TimelineMapping.objects.create(
+            timeline=timeline,
+            event=event,
+            offset="00:30:15",
+            created_by=self.user
+        )
+        self.assertEquals(mapping.pk, 1)
