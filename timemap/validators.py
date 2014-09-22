@@ -7,8 +7,8 @@ from django.utils.deconstruct import deconstructible
 
 @deconstructible
 class TimecodeValidator(RegexValidator):
-    regex = re.compile(r"\d{2}:\d{2}:\d{2}(:\d{2})?")
-    message = "Invalid timecode. Format: 00:00:00[:00]"
+    regex = re.compile(r"\d{2}:\d{2}:\d{2}")
+    message = "Invalid timecode. Format: 00:00:00"
 
 
 @deconstructible
