@@ -169,7 +169,7 @@ LOGGING = {
 
 METRON_SETTINGS = {
     "google": {
-        2: "",
+        2: "UA-2401894-47",
     },
     "gauges": {
         2: "542064a0e32bb4496f0034f3",
