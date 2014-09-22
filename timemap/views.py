@@ -87,9 +87,16 @@ class TimelineMappingCreateView(LoginRequiredMixin, CreateView):
 
 def ajax_autocomplete_events(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    events = project.events.all()  # filter(description__icontains=request.GET.get("q"))
+    events = project.events.all()
     data = [
-        {"pk": event.pk, "description": event.description}
+        {
+            "pk": event.pk,
+            "description": event.description,
+            "mappings": [
+                {"pk": m.pk, "offset": m.offset_display(), "timeline": m.timeline.name}
+                for m in event.mappings.all()
+            ]
+        }
         for event in events
-    ]  # NOTE: It will likely be useful to return details of where this event is already logged
+    ]
     return HttpResponse(json.dumps(data), content_type="application/json")

@@ -37,9 +37,13 @@
                     templates: {
                         suggestion: function(obj) {
                             if (obj.pk == "[new]") {
-                                return "<p><span class=\"unbold\"><i class=\"fa fa-plus\"></i> Create new event:</span> <strong>" + obj.description + "</strong></p>";
+                                return "<div class='result'><span class=\"unbold\"><i class=\"fa fa-plus\"></i> Create new event:</span> <strong>" + obj.description + "</strong></div>";
                             }
-                            return "<p>" + obj.description + "</p>";
+                            mappings = "";
+                            $.each(obj.mappings, function(i, mapping) {
+                                mappings += "<div class='mapping'><span class='offset'>" + mapping.offset + "</span><span class='timeline'>" + mapping.timeline + "</span></div>";
+                            });
+                            return "<div class='result'>" + obj.description + "<div class='mappings'>" + mappings + "</div></div>";
                         }
                     }
                 }
