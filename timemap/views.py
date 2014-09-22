@@ -14,6 +14,13 @@ from .models import Project, Timeline, TimelineMapping
 class HomePageView(TemplateView):
     template_name = "homepage.html"
 
+    def get_context_data(self, **kwargs):
+        context = super(HomePageView, self).get_context_data(**kwargs)
+        context.update({
+            "projects": Project.objects.all(),
+        })
+        return context
+
 
 class ProjectDetailView(DetailView):
     model = Project

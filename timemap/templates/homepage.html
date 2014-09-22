@@ -17,5 +17,17 @@
         </div>
     </section>
     <section>
+        <div class="container">
+            <h2>Current Projects</h2>
+
+            <div class="list-group">
+                {% for project in projects %}
+                    <a href="{% url 'project_detail' project.slug %}" class="list-group-item col-md-4">
+                        <h4 class="list-group-item-heading">{{ project.title }}</h4>
+                        <p class="list-group-item-text">{{ project.description }} </p>
+                    </a>
+                {% endfor %}
+            </div>
+        </div>
     </section>
 {% endblock %}
