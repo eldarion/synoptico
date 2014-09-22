@@ -7,7 +7,8 @@ DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ALLOWED_HOSTS = [
-    "jy682.gondor.co"
+    "jy682.gondor.co",
+    "synopti.co"
 ]
 
 if "GONDOR_DATABASE_URL" in os.environ:
