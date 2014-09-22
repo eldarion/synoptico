@@ -6,7 +6,7 @@
             var $hidden = $("input[name=event_pk]", $form);
             var $typeahead = $("input[name=event_description]", $form);
             var cached_streams = null;
-            var submitted = false;
+            var selected = null;
             $typeahead.typeahead(
                 {
                     hint: false,
@@ -51,6 +51,7 @@
             .on("typeahead:selected", function(e, datum, ds) {
                 $hidden.val(datum.pk);
                 $typeahead.val(datum.description);
+                selected = datum.description;
                 $(this).data("prev-value", $(this).val());
             })
             .on("propertychange keyup input paste", function(e) {
@@ -58,6 +59,9 @@
                     $hidden.val("");
                     $(this).data("prev-value", $(this).val());
                 }
+            })
+            .on("blur", function (e) {
+                $(this).val(selected);  // HACK: typeahead clears the input on blur for some reason
             });
         });
     };
