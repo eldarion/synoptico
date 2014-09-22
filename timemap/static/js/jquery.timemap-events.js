@@ -41,9 +41,9 @@
                             }
                             mappings = "";
                             $.each(obj.mappings, function(i, mapping) {
-                                mappings += "<div class='mapping'><span class='offset'>" + mapping.offset + "</span><span class='timeline'>" + mapping.timeline + "</span></div>";
+                                mappings += "<div class='mapping'><span class='offset'>" + mapping.offset + "</span> &mdash; <span class='timeline'>" + mapping.timeline + "</span></div>";
                             });
-                            return "<div class='result'>" + obj.description + "<div class='mappings'>" + mappings + "</div></div>";
+                            return "<div class='result'><div class='event'>" + obj.description + "</div><div class='mappings'>" + mappings + "</div></div>";
                         }
                     }
                 }
