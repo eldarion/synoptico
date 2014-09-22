@@ -17,14 +17,15 @@ class IMDBUrlValidator(RegexValidator):
     message = "Invalid URL. Should be a valid IMDB url."
 
 
+@deconstructible
+class ISBNValidator(RegexValidator):
+    regex = re.compile(r"[0-9]{3}?[0-9]{9}[0-9X]")
+    message = "Invalid ISBN. Should be a valid ISBN-10 or ISBN-13 without hyphens or spaces."
+
+
 validate_timecode = TimecodeValidator()
 validate_imdb_url = IMDBUrlValidator()
-
-
-def validate_isbn(value):
-    if len(value) not in [10, 13]:
-        raise ValidationError("ISBN should be 10 or 13 digits.", code="invalid")
-    validate_integer(value)
+validate_isbn = ISBNValidator()
 
 
 def validate_page_number(value):
