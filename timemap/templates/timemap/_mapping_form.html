@@ -5,3 +5,10 @@
     {{ form|bootstrap }}
     <button class="btn btn-primary">Create Mapping</button>
 </form>
+
+
+{% if request.is_ajax %}
+<script charset="utf-8">
+    $(".mapping-form").eventSelector();
+</script>
+{% endif %}

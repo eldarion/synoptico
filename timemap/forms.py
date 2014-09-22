@@ -1,4 +1,5 @@
 from django import forms
+from django.core.urlresolvers import reverse
 
 from .models import Event, TimelineMapping
 
@@ -12,6 +13,10 @@ class TimelineMappingForm(forms.Form):
     def __init__(self, *args, **kwargs):
         self.timeline = kwargs.pop("timeline")
         super(TimelineMappingForm, self).__init__(*args, **kwargs)
+        self.fields["event_description"].widget.attrs["data-ac-url"] = reverse(
+            "ajax_autocomplete_events",
+            args=[self.timeline.project.pk]
+        )
 
     def clean_offset(self):
         offset = self.cleaned_data["offset"]

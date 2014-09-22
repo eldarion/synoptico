@@ -42,7 +42,7 @@ class TimelineDetailView(DetailView):
 
 def ajax_autocomplete_events(request, pk):
     project = get_object_or_404(Project, pk=pk)
-    events = project.events.all()
+    events = project.events.all()  # filter(description__icontains=request.GET.get("q"))
     data = [
         {"pk": event.pk, "description": event.description}
         for event in events

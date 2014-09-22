@@ -11,3 +11,16 @@
     {% endfor %}
     </div>
 {% endblock %}
+
+
+{% block extra_body %}
+    {{ block.body }}
+    <script charset="utf-8">
+        $(".mapping-form").eventSelector();
+        // $(document).on("eldarion-ajax:success", function(evt, $el, data) {
+        //     if ($el.hasClass("mapping-form")) {
+        //         $(".mapping-form").eventSelector();
+        //     }
+        // });
+    </script>
+{% endblock %}
