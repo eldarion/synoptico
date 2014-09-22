@@ -1,13 +1,28 @@
 {% extends "timemap/base.html" %}
 
 {% block body %}
+
+    <p class="lead">
+        <a href="{% url 'project_detail' timeline.project.slug %}">{{ timeline.project }}</a>
+        /
+        Timeline:
+    </p>
+
     <h1>
         {% if timeline.media_type == "book" %}<i class="fa fa-book"></i>{% endif %}
         {{ timeline.name }}
         <small>{{ timeline.identifier }}</small>
     </h1>
 
-    <a class="btn btn-primary" href="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">Add a Mapping</a>
+    <p class="lead">
+        At this stage, we're just gathering data. You can add your own mapping
+        from an event to a particular point on this timeline but
+        make sure you're on the right timeline for the edition you're annotating.
+    </p>
+
+    <p>
+        <a class="btn btn-primary" href="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">Add a Mapping</a>
+    </p>
 
     <div class="mappings">
     {% for mapping in timeline.mappings.all %}
