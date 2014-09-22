@@ -156,3 +156,18 @@ class ValidationTests(TestCase):
             created_by=self.user
         )
         self.assertEquals(mapping.pk, 1)
+
+
+class OrderingTests(TestCase):
+
+    fixtures = ["projects", "hobbit_timelines", "hobbit_mappings"]
+
+    def setUp(self):
+        self.user = User.objects.create_user(username="jtauber")
+
+    def test_page_ordering(self):
+        pages = [
+            x.offset.strip()
+            for x in Timeline.objects.get(pk=1).events()
+        ]
+        self.assertEquals(pages, ["9", "40", "70", "102", "110", "137", "159", "194", "208", "248"])

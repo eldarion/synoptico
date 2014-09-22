@@ -52,6 +52,11 @@ class Timeline(CreatedByModel):
         MEDIA_TYPE_BOOK: "Page {}",
         MEDIA_TYPE_MOVIE: "{}"
     }
+    MEDIA_TYPE_SORTING = {
+        MEDIA_TYPE_KINDLE: lambda x: int(x.offset),
+        MEDIA_TYPE_BOOK: lambda x: int(x.offset),
+        MEDIA_TYPE_MOVIE: lambda x: x.offset
+    }
 
     project = models.ForeignKey(Project, related_name="timelines")
     identifier = models.CharField(max_length=200)
@@ -63,6 +68,10 @@ class Timeline(CreatedByModel):
 
     def __unicode__(self):
         return u"{}: {}".format(self.identifier, self.name)
+
+    def events(self):
+        mappings = self.mappings.all()
+        return sorted(mappings, key=Timeline.MEDIA_TYPE_SORTING[self.media_type])
 
     def clean(self):
         if self.media_type == Timeline.MEDIA_TYPE_BOOK:
