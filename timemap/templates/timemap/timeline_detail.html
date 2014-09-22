@@ -1,7 +1,11 @@
 {% extends "timemap/base.html" %}
 
 {% block body %}
-    <h1>{{ timeline }}</h1>
+    <h1>
+        {% if timeline.media_type == "book" %}<i class="fa fa-book"></i>{% endif %}
+        {{ timeline.name }}
+        <small>{{ timeline.identifier }}</small>
+    </h1>
 
     {% include "timemap/_mapping_form.html" %}
 
