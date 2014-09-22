@@ -1,4 +1,4 @@
-# timemap
+# synoptico
 
 [![Coverage Status](https://coveralls.io/repos/eldarion/timemap/badge.png?branch=master)](https://coveralls.io/r/eldarion/timemap?branch=master)
 [![Build Status](https://magnum.travis-ci.com/eldarion/timemap.svg?token=VQrzBbxW2oucsNHSsdwY&branch=master)](https://magnum.travis-ci.com/eldarion/timemap)
