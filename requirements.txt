@@ -5,3 +5,7 @@ metron==1.3.4
 eventlog==0.8.0
 django-jsonfield==0.9.13
 unicode-slugify==0.1.1
+
+gondor==1.2.5
+gunicorn==19.1.1
+psycopg2==2.5.4
