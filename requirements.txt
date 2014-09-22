@@ -9,3 +9,4 @@ unicode-slugify==0.1.1
 gondor==1.2.5
 gunicorn==19.1.1
 psycopg2==2.5.4
+raven==5.0.0

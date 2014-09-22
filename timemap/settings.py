@@ -133,6 +133,7 @@ INSTALLED_APPS = [
     "account",
     "eventlog",
     "metron",
+    "raven.contrib.django.raven_compat",
 
     # project
     "timemap",

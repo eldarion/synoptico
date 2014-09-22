@@ -37,3 +37,7 @@ STATIC_URL = "/site_media/static/"  # make sure this maps inside of site_media_u
 ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 
 FILE_UPLOAD_PERMISSIONS = 0640
+
+RAVEN_CONFIG = {
+    "dsn": "https://7d8f3acc41d041609d51e850daf9c847:45d4fbf7ece5472abb29023fa1e384bd@app.getsentry.com/30564"
+}
