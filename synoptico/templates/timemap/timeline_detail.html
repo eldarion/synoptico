@@ -1,4 +1,4 @@
-{% extends "timemap/base.html" %}
+{% extends "synoptico/base.html" %}
 
 {% block body %}
 
@@ -36,7 +36,7 @@
 
     <div class="mappings">
     {% for mapping in timeline.events %}
-        {% include "timemap/_mapping.html" %}
+        {% include "synoptico/_mapping.html" %}
     {% endfor %}
     </div>
 {% endblock %}

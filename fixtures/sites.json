@@ -4,15 +4,15 @@
         "model": "sites.site",
         "fields": {
             "domain": "localhost:8000",
-            "name": "TimeMap [localhost]"
+            "name": "synopti.co [localhost]"
         }
     },
     {
         "pk": 2,
         "model": "sites.site",
         "fields": {
-            "domain": "jy682.gondor.co",
-            "name": "TimeMap"
+            "domain": "synopti.co",
+            "name": "synopti.co"
         }
     }
 ]

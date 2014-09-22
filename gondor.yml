@@ -28,7 +28,7 @@ wsgi:
     #
     # wsgi = the Python module which should be importable
     # application = the callable in the Python module
-    entry_point: timemap.wsgi:application
+    entry_point: synoptico.wsgi:application
 
     # Options for gunicorn which runs your WSGI project.
     gunicorn:
@@ -42,4 +42,4 @@ wsgi:
     use_environment_cache: true
 
 env:
-    DJANGO_SETTINGS_MODULE: timemap.settings_gondor
+    DJANGO_SETTINGS_MODULE: synoptico.settings_gondor

@@ -7,7 +7,7 @@
         "created_by": 1,
         "title": "The Hobbit"
     },
-    "model": "timemap.project",
+    "model": "synoptico.project",
     "pk": 1
 }
 ]

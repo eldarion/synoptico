@@ -6,7 +6,7 @@
         "description": "Thorin inserts the key",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 1
 },
 {
@@ -16,7 +16,7 @@
         "description": "The Elvenking orders the dwarves be put in cells",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 2
 },
 {
@@ -26,7 +26,7 @@
         "description": "Gollum's first riddle (about the mountain)",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 3
 },
 {
@@ -36,7 +36,7 @@
         "description": "The trolls turn to stone",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 4
 },
 {
@@ -46,7 +46,7 @@
         "description": "Balin arrives at Bag End",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 5
 },
 {
@@ -56,7 +56,7 @@
         "description": "An eagle take Bilbo to the Great Shelf",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 6
 },
 {
@@ -66,7 +66,7 @@
         "description": "Gandalf and Bilbo meet Beorn",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 7
 },
 {
@@ -76,7 +76,7 @@
         "description": "Bilbo climbs the tallest tree in the forest",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 8
 },
 {
@@ -86,7 +86,7 @@
         "description": "Bilbo notices Smaug's weak spot",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 9
 },
 {
@@ -96,7 +96,7 @@
         "description": "Bilbo presents the Arkenstone to the Elvenking and Bard",
         "created_by": 1
     },
-    "model": "timemap.event",
+    "model": "synoptico.event",
     "pk": 10
 },
 {
@@ -107,7 +107,7 @@
         "created_by": 1,
         "offset": "194"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 1
 },
 {
@@ -118,7 +118,7 @@
         "created_by": 1,
         "offset": "159"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 2
 },
 {
@@ -129,7 +129,7 @@
         "created_by": 1,
         "offset": "70 "
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 3
 },
 {
@@ -140,7 +140,7 @@
         "created_by": 1,
         "offset": "40"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 4
 },
 {
@@ -151,7 +151,7 @@
         "created_by": 1,
         "offset": "9"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 5
 },
 {
@@ -162,7 +162,7 @@
         "created_by": 1,
         "offset": "102"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 6
 },
 {
@@ -173,7 +173,7 @@
         "created_by": 1,
         "offset": "110"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 7
 },
 {
@@ -184,7 +184,7 @@
         "created_by": 1,
         "offset": "137"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 8
 },
 {
@@ -195,7 +195,7 @@
         "created_by": 1,
         "offset": "208"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 9
 },
 {
@@ -206,7 +206,7 @@
         "created_by": 1,
         "offset": "248"
     },
-    "model": "timemap.timelinemapping",
+    "model": "synoptico.timelinemapping",
     "pk": 10
 }
 ]

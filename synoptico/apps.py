@@ -4,7 +4,7 @@ from django.utils.importlib import import_module
 
 class AppConfig(BaseAppConfig):
 
-    name = "timemap"
+    name = "synoptico"
 
     def ready(self):
-        import_module("timemap.receivers")
+        import_module("synoptico.receivers")

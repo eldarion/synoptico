@@ -1,4 +1,4 @@
 [run]
-source = timemap
-omit = timemap/wsgi.py,timemap/settings_gondor.py
+source = synoptico
+omit = synoptico/wsgi.py,synoptico/settings_gondor.py
 branch = true

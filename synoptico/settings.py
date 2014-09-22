@@ -107,10 +107,10 @@ MIDDLEWARE_CLASSES = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-ROOT_URLCONF = "timemap.urls"
+ROOT_URLCONF = "synoptico.urls"
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = "timemap.wsgi.application"
+WSGI_APPLICATION = "synoptico.wsgi.application"
 
 TEMPLATE_DIRS = [
     os.path.join(PACKAGE_ROOT, "templates"),
@@ -136,7 +136,7 @@ INSTALLED_APPS = [
     "raven.contrib.django.raven_compat",
 
     # project
-    "timemap",
+    "synoptico",
 ]
 
 # A sample logging configuration. The only tangible logging

@@ -6,9 +6,9 @@
         "created_by": 1,
         "project": 1,
         "media_type": "book",
-        "identifier": "9780618968633"
+        "identifier": "0618968633"
     },
-    "model": "timemap.timeline",
+    "model": "synoptico.timeline",
     "pk": 1
 }
 ]

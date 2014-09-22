@@ -7,4 +7,4 @@ comprehensive account management functionality. It is a foundation
 suitable for most sites that have user accounts.
 """
 
-default_app_config = "timemap.apps.AppConfig"
+default_app_config = "synoptico.apps.AppConfig"
