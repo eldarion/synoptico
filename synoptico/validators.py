@@ -1,6 +1,5 @@
 import re
 
-from django.core.exceptions import ValidationError
 from django.core.validators import RegexValidator, validate_integer
 from django.utils.deconstruct import deconstructible
 
@@ -19,7 +18,7 @@ class IMDBUrlValidator(RegexValidator):
 
 @deconstructible
 class ISBNValidator(RegexValidator):
-    regex = re.compile(r"[0-9]{3}?[0-9]{9}[0-9X]")
+    regex = re.compile(r"([0-9]{3})?[0-9]{9}[0-9X]")
     message = "Invalid ISBN. Should be a valid ISBN-10 or ISBN-13 without hyphens or spaces."
 
 
