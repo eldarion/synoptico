@@ -1,7 +1,7 @@
 # synoptico
 
-[![Coverage Status](https://coveralls.io/repos/eldarion/synoptico/badge.png?branch=master)](https://coveralls.io/r/eldarion/synoptico?branch=master)
-[![Build Status](https://magnum.travis-ci.com/eldarion/synoptico.svg?token=VQrzBbxW2oucsNHSsdwY&branch=master)](https://magnum.travis-ci.com/eldarion/synoptico)
+[![Coverage Status](https://coveralls.io/repos/eldarion/synoptico/badge.png)](https://coveralls.io/r/eldarion/synoptico)
+[![Build Status](https://travis-ci.org/eldarion/synoptico.svg)](https://travis-ci.org/eldarion/synoptico)
 
 The basic idea is that we collect a bunch of mappings between when an event occurs in the book and when in occurs in the films and then come up with cool ways of visualizing it.
 
