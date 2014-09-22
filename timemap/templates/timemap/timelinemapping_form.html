@@ -11,9 +11,11 @@
     </h1>
 
     <p class="lead">
-        At this stage, we're just gathering data. You can add your own mapping
-        from an event to a particular point on this timeline but
-        make sure you're on the right timeline for the edition you're annotating.
+        Find a single event in <b>{{ timeline.name }}</b> and note when it happens.
+        You can either select an existing event that has already been mapped to
+        another timeline or create a new event if no one has entered it before.
+        If your event has already been mapped for this timeline, there is no need
+        to enter it again.
     </p>
 
     <form class="form mapping-form" data-append=".mappings" method="post" action="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">
