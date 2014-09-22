@@ -13,7 +13,7 @@
 
     <div class="list-group">
     {% for timeline in project.timelines.all %}
-        <div class="list-group-item">
+        <div class="list-group-item col-md-6">
             <h4 class="list-group-item-heading">
                 {% if timeline.media_type == "book" %}<i class="fa fa-book"></i>{% endif %}
                 <a href="{% url 'timeline_detail' project.slug timeline.pk %}">{{ timeline.name }}</a>
