@@ -21,10 +21,11 @@
     </p>
 
     <p>
-        <a class="btn btn-primary btn-lg" href="{% url "timeline_events_mapping_create" timeline.project.slug timeline.pk %}">
+        <a class="btn btn-primary btn-lg" href="{% url 'timeline_events_mapping_create' timeline.project.slug timeline.pk %}">
             <i class="fa fa-plus"></i>
             Add a Mapping
         </a>
+        <a class="btn btn-default btn-lg" href="{% url 'project_detail' timeline.project.slug %}">Pick Another Timeline</a>
     </p>
 
     <h2>Existing Events on This Timeline</h2>
