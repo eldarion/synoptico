@@ -1,21 +1,23 @@
 import os
 
+import dj_database_url
+
 
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
 PACKAGE_ROOT = os.path.abspath(os.path.dirname(__file__))
 BASE_DIR = PACKAGE_ROOT
 
-DEBUG = True
+DEBUG = bool(int(os.environ.get("DEBUG", 1)))
 TEMPLATE_DEBUG = DEBUG
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": "dev.db",
-    }
+    "default": dj_database_url.config(default="postgres://localhost/synoptico")
 }
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    os.environ.get("GONDOR_INSTANCE_DOMAIN"),
+    "synopti.co"
+]
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -180,6 +182,13 @@ METRON_SETTINGS = {
 FIXTURE_DIRS = [
     os.path.join(PROJECT_ROOT, "fixtures"),
 ]
+
+FILE_UPLOAD_PERMISSIONS = 0640
+
+RAVEN_CONFIG = {
+    "dsn": os.environ.get("SENTRY_DSN", "")
+}
+
 
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
 
